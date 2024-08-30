@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 
 void main(List<String> args) {
   runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_)=>CurrencyProvider())
-    ],
-    child: const MyApp()));
+      providers: [ChangeNotifierProvider(create: (_) => CurrencyProvider())],
+      child: const MyApp()));
 }
