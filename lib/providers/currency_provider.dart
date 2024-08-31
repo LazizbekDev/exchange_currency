@@ -30,12 +30,9 @@ class CurrencyProvider with ChangeNotifier {
           currentCountrySecond = _countries.last.ccy;
           controllerFirst.text = "1.0";
           updateConversion(isFirstCountry: true);
-          print("data jeldi");
         }
         notifyListeners();
       }
-    } catch (e) {
-      print("xatolik $e");
     } finally {
       isLoading = false;
       filteredCountries = countries;

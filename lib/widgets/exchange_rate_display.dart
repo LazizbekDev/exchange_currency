@@ -1,4 +1,3 @@
-import 'package:currency_application_1/models/currency_model.dart';
 import 'package:currency_application_1/providers/currency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
