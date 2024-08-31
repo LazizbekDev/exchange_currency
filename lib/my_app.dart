@@ -1,6 +1,6 @@
 import 'package:currency_application_1/providers/currency_provider.dart';
 import 'package:currency_application_1/widgets/exchange_button.dart';
-import 'package:currency_application_1/widgets/from_currency_country.dart';
+import 'package:currency_application_1/widgets/selected_country.dart';
 import 'package:currency_application_1/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
       final toCountry = value.currentCountrySecond;
       return MaterialApp(
         home: Scaffold(
+          resizeToAvoidBottomInset: true,
           body: SafeArea(
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -55,8 +56,8 @@ class _MyAppState extends State<MyApp> {
                             color: Color(0xFF989898),
                           ),
                         ),
-                        FromCurrencyCountry(
-                          isFirstCountry: true, //289+339+77=   685
+                        SelectedCountry(
+                          isFirstCountry: true,
                         ),
                         ExchangeButton(),
                         Text(
@@ -66,7 +67,7 @@ class _MyAppState extends State<MyApp> {
                               fontSize: 15,
                               fontWeight: FontWeight.w400),
                         ),
-                        FromCurrencyCountry(
+                        SelectedCountry(
                           isFirstCountry: false,
                         ),
                       ],
