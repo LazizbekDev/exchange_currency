@@ -1,9 +1,10 @@
-import 'package:currency_application_1/providers/currency_provider.dart';
-import 'package:currency_application_1/widgets/exchange_button.dart';
-import 'package:currency_application_1/widgets/selected_country.dart';
-import 'package:currency_application_1/widgets/text_widget.dart';
+import 'package:currency_application_1/widgets/exchange_container.dart';
+import 'package:currency_application_1/widgets/exchange_rate_display.dart';
+import 'package:currency_application_1/widgets/exchange_rate_text.dart';
+import 'package:currency_application_1/widgets/converter_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:currency_application_1/providers/currency_provider.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -13,8 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String? currentCountry;
-
   @override
   void initState() {
     super.initState();
@@ -23,88 +22,32 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CurrencyProvider>(builder: (context, value, child) {
-      final fromCountry = value.currentCountryFirst;
-      final toCountry = value.currentCountrySecond;
-      return MaterialApp(
-        home: Scaffold(
-          resizeToAvoidBottomInset: true,
-          body: value.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : SafeArea(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    color: const Color(0xFFF6F6F6),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const TextWidget(),
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 30),
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: const Color(0xFFFFFFFF),
-                          ),
-                          child: const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Amount',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  color: Color(0xFF989898),
-                                ),
-                              ),
-                              SizedBox(height: 14),
-                              SelectedCountry(
-                                isFirstCountry: true,
-                              ),
-                              ExchangeButton(),
-                              Text(
-                                'Converted Amount',
-                                style: TextStyle(
-                                    color: Color(0xFF989898),
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              SelectedCountry(
-                                isFirstCountry: false,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Text(
-                          'Indicative Exchange Rate',
-                          style: TextStyle(
-                              color: Color(0xFFA1A1A1),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        if (fromCountry != null && toCountry != null)
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 15,
-                            ),
-                            child: Text(
-                              '1 $fromCountry=${value.convert(1, fromCountry, toCountry).toStringAsFixed(2)}'
-                              " $toCountry",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 18,
-                                  color: Color(0xFF000000)),
-                            ),
-                          )
-                      ],
+    return Consumer<CurrencyProvider>(
+      builder: (context, provider, child) {
+        return MaterialApp(
+          home: Scaffold(
+            resizeToAvoidBottomInset: true,
+            body: provider.isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : SafeArea(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      color: const Color(0xFFF6F6F6),
+                      child: ListView(
+                        children: const [
+                          ConverterText(),
+                          ExchangeContainer(),
+                          ExchangeRateText(),
+                          ExchangeRateDisplay()
+                        ],
+                      ),
                     ),
                   ),
-                ),
-        ),
-      );
-    });
+          ),
+        );
+      },
+    );
   }
 }

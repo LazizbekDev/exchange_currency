@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextWidget extends StatelessWidget {
-  const TextWidget({super.key});
+class ConverterText extends StatelessWidget {
+  const ConverterText({super.key});
 
   @override
   Widget build(BuildContext context) {
