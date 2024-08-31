@@ -9,12 +9,13 @@ class CurrencyProvider with ChangeNotifier {
 
   String? currentCountryFirst;
   String? currentCountrySecond;
-
+ bool isLoading=true;
   final TextEditingController controllerFirst = TextEditingController();
   final TextEditingController controllerSecond = TextEditingController();
 
   Future<void> getData() async {
-    final response = await http
+    try{
+        final response = await http
         .get(Uri.parse('https://cbu.uz/oz/arkhiv-kursov-valyut/json/'));
 
     if (response.statusCode == 200) {
@@ -31,6 +32,14 @@ class CurrencyProvider with ChangeNotifier {
         updateConversion(isFirstCountry: true);
       }
       notifyListeners();
+    }
+    }
+    catch(e){
+      print("xatolik $e");
+
+    }
+    finally{
+      isLoading=false;
     }
   }
 
@@ -54,8 +63,8 @@ class CurrencyProvider with ChangeNotifier {
   }
 
   void updateConversion({required bool isFirstCountry}) {
-    double amount = double.parse(
-        isFirstCountry ? controllerFirst.text : controllerSecond.text);
+    double amount = double.tryParse(
+        isFirstCountry ? controllerFirst.text : controllerSecond.text)??0;
     double result = convert(
         amount,
         isFirstCountry ? currentCountryFirst! : currentCountrySecond!,
@@ -76,4 +85,5 @@ class CurrencyProvider with ChangeNotifier {
     updateConversion(isFirstCountry: true);
     notifyListeners();
   }
+  
 }
