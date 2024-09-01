@@ -24,7 +24,7 @@ class CurrencyProvider with ChangeNotifier {
             .map((item) => CurrencyModel.fromJson(item as Map<String, dynamic>))
             .toList();
         _countries.add(
-            const CurrencyModel(id: "76", ccy: "UZB", rate: "1", diff: "1"));
+            const CurrencyModel(id: "76", ccy: "UZB", rate: "1"));
         if (_countries.isNotEmpty) {
           currentCountryFirst = _countries.first.ccy;
           currentCountrySecond = _countries.last.ccy;
