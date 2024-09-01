@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
                           ConverterText(),
                           ExchangeContainer(),
                           ExchangeRateText(),
-                          ExchangeRateDisplay()
+                          ExchangeRateDisplay(),
                         ],
                       ),
                     ),

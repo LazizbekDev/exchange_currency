@@ -55,10 +55,10 @@ class ListCountries extends StatelessWidget {
                   itemCount: value.filteredCountries.length,
                   itemBuilder: (context, index) {
                     final country = value.filteredCountries[index];
-                    bool isSelectedFirst =
-                        country.ccy == value.currentCountryFirst;
-                    bool isSelectedSecond =
-                        country.ccy == value.controllerSecond;
+                    bool isSelected =
+                        (country.ccy == value.currentCountryFirst) ||
+                            (country.ccy == value.currentCountrySecond);
+
                     return InkWell(
                         onTap: () {
                           value.filteredCountries = value.countries;
@@ -94,7 +94,7 @@ class ListCountries extends StatelessWidget {
                               const SizedBox(
                                 width: 167,
                               ),
-                              Image.asset(isSelectedFirst || isSelectedSecond
+                              Image.asset(isSelected
                                   ? "assets/images/selected.png"
                                   : "assets/images/unselected.png")
                             ],

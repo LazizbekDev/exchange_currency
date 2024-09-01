@@ -17,7 +17,4 @@ class CurrencyModel {
       diff: json['Diff'] as String,
     );
   }
-  Map<String, dynamic> toJson() {
-    return {'id': id, 'Ccy': ccy, 'Rate': rate, 'Diff': diff};
-  }
 }
