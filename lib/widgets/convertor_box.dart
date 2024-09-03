@@ -3,14 +3,14 @@ import 'package:currency_application_1/widgets/changer.dart';
 import 'package:currency_application_1/widgets/selected_country.dart';
 import 'package:flutter/material.dart';
 
-class ExchangeContainer extends StatefulWidget {
-  const ExchangeContainer({super.key});
+class ConvertorBox extends StatefulWidget {
+  const ConvertorBox({super.key});
 
   @override
-  State<ExchangeContainer> createState() => _ExchangeContainerState();
+  State<ConvertorBox> createState() => _ConvertorBoxState();
 }
 
-class _ExchangeContainerState extends State<ExchangeContainer> {
+class _ConvertorBoxState extends State<ConvertorBox> {
   @override
   Widget build(BuildContext context) {
     return Container(

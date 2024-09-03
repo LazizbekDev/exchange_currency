@@ -1,8 +1,6 @@
 import 'package:currency_application_1/utilities/app_colors.dart';
-import 'package:currency_application_1/widgets/exchange_container.dart';
-import 'package:currency_application_1/widgets/exchange_rate_display.dart';
-import 'package:currency_application_1/widgets/exchange_rate_text.dart';
-import 'package:currency_application_1/widgets/heading.dart';
+import 'package:currency_application_1/widgets/convertor_box.dart';
+import 'package:currency_application_1/widgets/rate_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:currency_application_1/utilities/currency_provider.dart';
@@ -38,10 +36,19 @@ class _HomeState extends State<Home> {
                       color: AppColors.background,
                       child: ListView(
                         children: const [
-                          ConverterText(),
-                          ExchangeContainer(),
-                          ExchangeRateText(),
-                          ExchangeRateDisplay(),
+                          SizedBox(height: 30),
+                          Text(
+                            'Currency Converter',
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.textPrimary,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 110),
+                          ConvertorBox(),
+                          RateInfo(),
                         ],
                       ),
                     ),
