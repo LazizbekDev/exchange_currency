@@ -2,11 +2,11 @@ class CurrencyModel {
   final String id;
   final String ccy;
   final String rate;
-  const CurrencyModel(
-      {required this.id,
-      required this.ccy,
-      required this.rate,
-    });
+  const CurrencyModel({
+    required this.id,
+    required this.ccy,
+    required this.rate,
+  });
 
   factory CurrencyModel.fromJson(Map<String, dynamic> json) {
     return CurrencyModel(

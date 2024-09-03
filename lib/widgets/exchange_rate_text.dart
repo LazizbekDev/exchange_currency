@@ -1,3 +1,4 @@
+import 'package:currency_application_1/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ExchangeRateText extends StatelessWidget {
@@ -8,7 +9,10 @@ class ExchangeRateText extends StatelessWidget {
     return const Text(
       'Indicative Exchange Rate',
       style: TextStyle(
-          color: Color(0xFFA1A1A1), fontSize: 16, fontWeight: FontWeight.w400),
+        color: AppColors.inActive,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
     );
   }
 }

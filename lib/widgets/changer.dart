@@ -1,15 +1,16 @@
-import 'package:currency_application_1/providers/currency_provider.dart';
+import 'package:currency_application_1/utilities/app_colors.dart';
+import 'package:currency_application_1/utilities/currency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ExchangeButton extends StatefulWidget {
-  const ExchangeButton({super.key});
+class Changer extends StatefulWidget {
+  const Changer({super.key});
 
   @override
-  State<ExchangeButton> createState() => _ExchangeButtonState();
+  State<Changer> createState() => _ChangerState();
 }
 
-class _ExchangeButtonState extends State<ExchangeButton> {
+class _ChangerState extends State<Changer> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,10 +18,11 @@ class _ExchangeButtonState extends State<ExchangeButton> {
       child: Consumer<CurrencyProvider>(builder: (context, value, child) {
         return Row(
           children: [
-            Container(
-              width: 118,
-              height: 1,
-              color: const Color(0xFFE7E7EE),
+            const Expanded(
+              child: Divider(
+                color: AppColors.background,
+                thickness: 1,
+              ),
             ),
             Container(
               decoration: const BoxDecoration(
@@ -37,10 +39,11 @@ class _ExchangeButtonState extends State<ExchangeButton> {
                     width: 15,
                   )),
             ),
-            Container(
-              width: 118,
-              height: 1,
-              color: const Color(0xFFE7E7EE),
+            const Expanded(
+              child: Divider(
+                color: AppColors.background,
+                thickness: 1,
+              ),
             ),
           ],
         );

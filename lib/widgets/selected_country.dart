@@ -1,5 +1,5 @@
 import 'package:currency_application_1/widgets/list_countries.dart';
-import 'package:currency_application_1/providers/currency_provider.dart';
+import 'package:currency_application_1/utilities/currency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,10 +11,11 @@ class SelectedCountry extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CurrencyProvider>(
       builder: (context, value, child) {
-        final currentCountryFirst = value.countries
-            .firstWhere((e) => e.ccy == value.currentCountryFirst);
-        final currentCountrySecond = value.countries
-            .firstWhere((e) => e.ccy == value.currentCountrySecond);
+        final currentCountryFirst =
+            value.countries.firstWhere((e) => e.ccy == value.firstCountry);
+        final currentCountrySecond =
+            value.countries.firstWhere((e) => e.ccy == value.secondCountry);
+
         return InkWell(
           onTap: () {
             Navigator.push(
@@ -33,25 +34,24 @@ class SelectedCountry extends StatelessWidget {
             const SizedBox(
               width: 13,
             ),
-            Text(
-              isFirstCountry
-                  ? currentCountryFirst.ccy
-                  : currentCountrySecond.ccy,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Color(0xFF26278D)),
+            Expanded(
+              child: Text(
+                isFirstCountry
+                    ? currentCountryFirst.ccy
+                    : currentCountrySecond.ccy,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    color: Color(0xFF26278D)),
+              ),
             ),
             const SizedBox(
               width: 8.29,
             ),
             Image.asset('assets/images/vector.png'),
-            const SizedBox(
-              width: 30,
-            ),
-            SizedBox(
-              width: 141,
-              height: 45,
+            const Spacer(),
+            Expanded(
+              flex: 3,
               child: TextField(
                 controller: isFirstCountry
                     ? value.controllerFirst
@@ -65,11 +65,12 @@ class SelectedCountry extends StatelessWidget {
                 textAlignVertical: TextAlignVertical.top,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFFEFEFEF),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(7)),
-                        borderSide: BorderSide.none)),
+                  filled: true,
+                  fillColor: Color(0xFFEFEFEF),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      borderSide: BorderSide.none),
+                ),
                 onChanged: (element) {
                   if (element.isEmpty) {
                     if (isFirstCountry) {

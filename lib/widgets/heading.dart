@@ -1,3 +1,4 @@
+import 'package:currency_application_1/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ConverterText extends StatelessWidget {
@@ -12,7 +13,7 @@ class ConverterText extends StatelessWidget {
         style: TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.w700,
-          color: Color(0xFF1F2261),
+          color: AppColors.textPrimary,
         ),
       ),
     );

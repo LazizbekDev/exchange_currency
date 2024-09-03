@@ -1,19 +1,20 @@
+import 'package:currency_application_1/utilities/app_colors.dart';
 import 'package:currency_application_1/widgets/exchange_container.dart';
 import 'package:currency_application_1/widgets/exchange_rate_display.dart';
 import 'package:currency_application_1/widgets/exchange_rate_text.dart';
-import 'package:currency_application_1/widgets/converter_text.dart';
+import 'package:currency_application_1/widgets/heading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:currency_application_1/providers/currency_provider.dart';
+import 'package:currency_application_1/utilities/currency_provider.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<Home> createState() => _HomeState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
                 : SafeArea(
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      color: const Color(0xFFF6F6F6),
+                      color: AppColors.background,
                       child: ListView(
                         children: const [
                           ConverterText(),

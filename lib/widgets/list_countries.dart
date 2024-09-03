@@ -1,5 +1,6 @@
+import 'package:currency_application_1/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:currency_application_1/providers/currency_provider.dart';
+import 'package:currency_application_1/utilities/currency_provider.dart';
 import 'package:provider/provider.dart';
 
 class ListCountries extends StatelessWidget {
@@ -15,7 +16,7 @@ class ListCountries extends StatelessWidget {
           title: const Text(
         'Currency Converter',
         style: TextStyle(
-          color: Color(0xFF1F2261),
+          color: AppColors.textPrimary,
           fontWeight: FontWeight.w700,
           fontSize: 25,
         ),
@@ -28,25 +29,34 @@ class ListCountries extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16, left: 20, right: 20),
                 child: TextField(
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0x70FFFFFF),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.only(left: 14, right: 4),
                       child: Image.asset('assets/images/search.png'),
                     ),
-                    filled: true,
-                    fillColor: const Color(0xFFFFFFFF),
-                    labelText: 'search',
-                    labelStyle: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Color(0xFFAEAEAE)),
-                    border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                        borderSide: BorderSide.none),
+                    hintText: "Search",
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.primary,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(18),
+                      ),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00FFFFFF),
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(18),
+                      ),
+                    ),
                   ),
-                  onChanged: (elememnt) {
-                    value.searchCountry(elememnt);
+                  onChanged: (e) {
+                    value.searchCountry(e);
                   },
                 ),
               ),
@@ -55,9 +65,8 @@ class ListCountries extends StatelessWidget {
                   itemCount: value.filteredCountries.length,
                   itemBuilder: (context, index) {
                     final country = value.filteredCountries[index];
-                    bool isSelected =
-                        (country.ccy == value.currentCountryFirst) ||
-                            (country.ccy == value.currentCountrySecond);
+                    bool isSelected = (country.ccy == value.firstCountry) ||
+                        (country.ccy == value.secondCountry);
 
                     return InkWell(
                         onTap: () {
@@ -70,9 +79,9 @@ class ListCountries extends StatelessWidget {
                               top: 16, left: 21, right: 21),
                           padding: const EdgeInsets.only(left: 14),
                           decoration: const BoxDecoration(
-                              color: Color(0xFFFFFFFF),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
+                            color: Color(0xFFFFFFFF),
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
                           width: 318,
                           height: 73,
                           child: Row(
@@ -94,9 +103,11 @@ class ListCountries extends StatelessWidget {
                               const SizedBox(
                                 width: 167,
                               ),
-                              Image.asset(isSelected
-                                  ? "assets/images/selected.png"
-                                  : "assets/images/unselected.png")
+                              Image.asset(
+                                isSelected
+                                    ? "assets/images/selected.png"
+                                    : "assets/images/unselected.png",
+                              )
                             ],
                           ),
                         ));
