@@ -35,7 +35,7 @@ class _ChangerState extends State<Changer> {
                     value.exchangeCountry();
                   },
                   icon: Image.asset(
-                    'assets/images/exchange2.png',
+                    'assets/images/exchanger.png',
                     width: 15,
                   )),
             ),
