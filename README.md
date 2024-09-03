@@ -55,3 +55,4 @@ My Awesome Application is a web-based tool for managing tasks and projects.
 ------------
 
 * Lazizbek
+* <a href="https://github.com/Primberdiyev">Dilshodbek Primberdiyev</a>
