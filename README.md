@@ -1,16 +1,57 @@
-# currency_application_1
+**Currency exchange | convertor application**
+=====================
 
-A new Flutter project.
+**Description**
+---------------
 
-## Getting Started
+My Awesome Application is a web-based tool for managing tasks and projects.
 
-This project is a starting point for a Flutter application.
+**Getting Started**
+---------------
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* sdk: '>=3.4.3 <4.0.0'
+* npm 6+
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Installation
+
+1. Clone the repository: `git clone https://github.com/LazizbekDev/exchange_currency.git`
+2. Install dependencies: `flutter pub get`
+3. Start the application: `flutter run`
+
+
+**Features**
+------------
+
+* Task management
+* Project management
+* User authentication
+
+**Technical Details**
+-------------------
+
+### Technology Stack
+
+* Dart
+* Flutter
+
+### Architecture
+
+* The application uses a microservices architecture, with separate services for authentication, task management, and project management.
+
+**Contributing**
+---------------
+
+* Fork the repository and create a pull request with your changes.
+* Ensure all changes are tested and follow the project's coding standards.
+
+**License**
+------------
+
+* MIT License
+
+**Authors**
+------------
+
+* Lazizbek
