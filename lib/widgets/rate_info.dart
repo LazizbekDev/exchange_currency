@@ -8,9 +8,10 @@ class RateInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<CurrencyProvider>();
+    final provider = context.watch<CurrencyProvider>();
     final from = provider.firstCountry;
     final to = provider.secondCountry;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,9 +28,10 @@ class RateInfo extends StatelessWidget {
           '1 $from=${provider.convert(1, from!, to!).toStringAsFixed(2)}'
           " $to",
           style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 18,
-              color: Color(0xFF000000)),
+            fontWeight: FontWeight.w500,
+            fontSize: 18,
+            color: Color(0xFF000000),
+          ),
         ),
       ],
     );

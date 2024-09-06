@@ -13,14 +13,15 @@ class ListCountries extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-          title: const Text(
-        'Currency Converter',
-        style: TextStyle(
-          color: AppColors.textPrimary,
-          fontWeight: FontWeight.w700,
-          fontSize: 25,
+        title: const Text(
+          'Currency Converter',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.w700,
+            fontSize: 25,
+          ),
         ),
-      )),
+      ),
       body: Consumer<CurrencyProvider>(
         builder: (context, value, child) {
           return Column(
@@ -65,18 +66,28 @@ class ListCountries extends StatelessWidget {
                   itemCount: value.filteredCountries.length,
                   itemBuilder: (context, index) {
                     final country = value.filteredCountries[index];
-                    bool isSelected = (country.ccy == value.firstCountry) ||
-                        (country.ccy == value.secondCountry);
+
+                    bool isSelectedAsFirst = country.ccy == value.firstCountry;
+                    bool isSelectedAsSecond = country.ccy == value.secondCountry;
+
+                    bool isDisabled = isFirstCountry
+                        ? isSelectedAsSecond
+                        : isSelectedAsFirst;
 
                     return InkWell(
-                        onTap: () {
-                          value.filteredCountries = value.countries;
-                          value.updateCurrentCountry(country, isFirstCountry);
-                          Navigator.pop(context);
-                        },
+                      onTap: isDisabled
+                          ? null
+                          : () {
+                              value.filteredCountries = value.countries;
+
+                              value.updateCurrentCountry(country, isFirstCountry);
+
+                              Navigator.pop(context);
+                            },
+                      child: Opacity(
+                        opacity: isDisabled ? 0.5 : 1.0,
                         child: Container(
-                          margin: const EdgeInsets.only(
-                              top: 16, left: 21, right: 21),
+                          margin: const EdgeInsets.only(top: 16, left: 21, right: 21),
                           padding: const EdgeInsets.only(left: 14),
                           decoration: const BoxDecoration(
                             color: Color(0xFFFFFFFF),
@@ -90,27 +101,26 @@ class ListCountries extends StatelessWidget {
                                 'assets/images/flag${country.id}.png',
                                 width: 45,
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
+                              const SizedBox(width: 20),
                               Text(
                                 country.ccy,
                                 style: const TextStyle(
-                                    color: Color(0xFF26278D),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500),
+                                  color: Color(0xFF26278D),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                              const SizedBox(
-                                width: 167,
-                              ),
+                              const Spacer(),
                               Image.asset(
-                                isSelected
+                                isSelectedAsFirst || isSelectedAsSecond
                                     ? "assets/images/selected.png"
                                     : "assets/images/unselected.png",
-                              )
+                              ),
                             ],
                           ),
-                        ));
+                        ),
+                      ),
+                    );
                   },
                 ),
               ),
